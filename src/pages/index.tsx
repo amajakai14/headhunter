@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import LoginBtn from "../components/LoginBtn";
 import { trpc } from "../utils/trpc";
 
 type TechnologyCardProps = {
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="container mx-auto flex flex-col items-center justify-center h-screen p-4">
+        <LoginBtn />
         <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
           Create <span className="text-purple-300">T3</span> App
         </h1>
