@@ -1,12 +1,16 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { baseUrl } from '../constants/baseURL';
-// import { sendLoginEmail } from '../utils/mailer';
+import { trpc } from '../utils/trpc';
 
 export default function Component() {
   const { data: session } = useSession();
-  const sendmail = async () => {};
+  const a = trpc.useMutation(['user.request-verify-user']);
+  const email = session?.user?.email as string;
+  function sendmail() {
+    console.log('hi front');
+    const result = a.mutate({ email });
+    console.log(result);
+  }
   if (session) {
-    console.log(session);
     return (
       <>
         Signed in as {session?.user?.email} <br />

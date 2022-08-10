@@ -16,6 +16,8 @@ export const serverSchema = z.object({
   GITHUB_SECRET: z.string(),
   GMAIL_ADDRESS: z.string(),
   GMAIL_PASSWORD: z.string(),
+  GOOGLE_ID: z.string(),
+  GOOGLE_SECRET: z.string(),
 });
 
 /**

@@ -1,10 +1,9 @@
 import z from 'zod';
 
-export const requestOtpSchema = z.object({
+export const requestVerifySchema = z.object({
   email: z.string(),
-  redirect: z.string().default('/'),
 });
 
-export const verifyOtpSchema = z.object({
+export const verifySchema = z.object({
   hash: z.string(),
 });
