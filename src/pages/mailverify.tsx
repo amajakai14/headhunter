@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { baseUrl } from '../constants/baseURL';
 import { trpc } from '../utils/trpc';
 import { useState } from 'react';
 function VerifyPage() {

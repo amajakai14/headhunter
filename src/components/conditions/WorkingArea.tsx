@@ -1,13 +1,8 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
-import { locationData, LocationData } from "../../data/location";
-import CSS from "csstype";
-import { SearchCondition } from "../../pages/jobs";
-import { trpc } from "../../utils/trpc";
-import { useLocale } from "../../hooks/useLocale";
-interface SearchProps {
-  search: SearchCondition;
-  setSearch: any;
-}
+import { ChangeEvent, FC, useState } from 'react';
+import { locationData } from '../../data/location';
+import CSS from 'csstype';
+import { useLocale } from '../../hooks/useLocale';
+
 interface Address {
   th_name: string;
   en_name: string;
@@ -37,7 +32,7 @@ const WorkingArea: FC = (): JSX.Element => {
       setProvinces(AllProvince);
       setDistricts([]);
       setAmphoe([]);
-      console.log("notmatch");
+      console.log('notmatch');
     }
   };
 
@@ -92,7 +87,7 @@ const WorkingArea: FC = (): JSX.Element => {
         {distinctDistrict.map((district, index) => {
           return (
             <option key={index} value={district.code}>
-              {locale === "th" ? district.th_name : district.en_name}
+              {locale === 'th' ? district.th_name : district.en_name}
             </option>
           );
         })}
@@ -101,15 +96,14 @@ const WorkingArea: FC = (): JSX.Element => {
   };
 
   const handleProvince = (e: ChangeEvent<HTMLElement>) => {
-    const mapProvinces: Address[] = locationData.map((elem) => ({
-      th_name: elem.ProvinceThai,
-      en_name: elem.ProvinceEng,
-      code: elem.province_code,
-    }));
-    const getProvinces = distinctArray(mapProvinces);
+    // const mapProvinces: Address[] = locationData.map((elem) => ({
+    //   th_name: elem.ProvinceThai,
+    //   en_name: elem.ProvinceEng,
+    //   code: elem.province_code,
+    // }));
 
     const selectedDistrict = e.target as HTMLSelectElement;
-    console.log("province", selectedDistrict.value);
+    console.log('province', selectedDistrict.value);
     const amphoeFound = locationData.filter(
       (elem) => elem.province_code === parseInt(selectedDistrict.value)
     );
@@ -138,12 +132,12 @@ const WorkingArea: FC = (): JSX.Element => {
 
   function distinctArray(inputArray: Address[]) {
     return [
-      ...new Map(inputArray.map((item) => [item["code"], item])).values(),
+      ...new Map(inputArray.map((item) => [item['code'], item])).values(),
     ];
   }
 
   const textAreaStyle: CSS.Properties = {
-    boxShadow: "0 0 2pt grey",
+    boxShadow: '0 0 2pt grey',
   };
 
   return (
@@ -173,7 +167,7 @@ const WorkingArea: FC = (): JSX.Element => {
             {provinces.map((province, index) => {
               return (
                 <option key={index} value={province.code}>
-                  {locale === "th" ? province.th_name : province.en_name}
+                  {locale === 'th' ? province.th_name : province.en_name}
                 </option>
               );
             })}
@@ -192,7 +186,7 @@ const WorkingArea: FC = (): JSX.Element => {
               amphoe.map((amp, index) => {
                 return (
                   <option key={`amphoe_${index}`} value={amp.code}>
-                    {locale === "th" ? amp.th_name : amp.en_name}
+                    {locale === 'th' ? amp.th_name : amp.en_name}
                   </option>
                 );
               })}

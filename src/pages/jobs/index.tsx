@@ -7,12 +7,7 @@ import {
 } from '../../components/conditions/WageRange';
 
 import Navbar from '../../components/Navbar';
-import {
-  ChangeEvent,
-  HTMLInputTypeAttribute,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import WorkingArea from '../../components/conditions/WorkingArea';
 import CSS from 'csstype';
 import { jobList, JOBLIST } from '../../data/joblist';
@@ -28,11 +23,11 @@ export interface SearchCondition {
 }
 
 function EmployeesPage() {
-  const { t, locale } = useLocale();
+  const { t } = useLocale();
   const [wageType, setWageType] = useState('hourly');
   const [job, setJob] = useState<JOBLIST[]>([]);
 
-  const getJobCatalog = trpc.useQuery(['jobcatagory.getalljobCatalog']);
+  const getJobCategory = trpc.useQuery(['jobcatagory.getalljobCategory']);
 
   const handleWageType = (e: ChangeEvent<HTMLSelectElement>) => {
     setWageType(e.target.value);
@@ -134,9 +129,9 @@ function EmployeesPage() {
                 className="rounded-md outline-none border-none"
                 style={textAreaStyle}
               >
-                {getJobCatalog.data?.map((val, index) => (
+                {getJobCategory.data?.map((val, index) => (
                   <option value={val.job_id} key={`jobCata${index}`}>
-                    {val.job_Catalog}
+                    {val.job_Category}
                   </option>
                 ))}
               </select>

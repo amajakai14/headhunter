@@ -1,7 +1,6 @@
-import CSS from "csstype";
-import { useLocale } from "../../hooks/useLocale";
+import CSS from 'csstype';
 const textAreaStyle: CSS.Properties = {
-  boxShadow: "0 0 2pt grey",
+  boxShadow: '0 0 2pt grey',
 };
 export const DailyWage = () => {
   return (

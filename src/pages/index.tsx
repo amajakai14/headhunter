@@ -1,18 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Footer from '../components/Footer';
-import LoginBtn from '../components/LoginBtn';
+import JobCard from '../components/JobCard';
 import Navbar from '../components/Navbar';
 import { trpc } from '../utils/trpc';
 
-type TechnologyCardProps = {
-  name: string;
-  description: string;
-  documentation: string;
-};
-
 const Home: NextPage = () => {
   const hello = trpc.useQuery(['example.hello', { text: 'from tRPC' }]);
+  console.log(hello);
 
   return (
     <>
@@ -23,6 +18,14 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Navbar />
+        <div className="mx-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1 justify-center content-center">
+            <JobCard />
+            <JobCard />
+            <JobCard />
+            <JobCard />
+          </div>
+        </div>
 
         <Footer />
       </main>

@@ -1,8 +1,9 @@
+import { Session } from 'next-auth';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 function Navbar() {
   const { data: session } = useSession();
-  const UserProfile = (session: any) => {
+  const UserProfile = (session: Session) => {
     return (
       <>
         <div className="navbar-end">
@@ -28,7 +29,7 @@ function Navbar() {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Homepage</a>
+                <a>{session.user?.email}</a>
               </li>
               <li>
                 <a>Portfolio</a>

@@ -61,23 +61,23 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
-model JobCatalog {
-    job_id      String @id @default(cuid())
-    job_Catalog String
+model JobCategory {
+    job_id       String @id @default(cuid())
+    job_Category String
 
-    JobCatalogBranch JobCatalogBranch[]
+    JobCatalogBranch JobCategoryBranch[]
 
-    @@fulltext([job_Catalog])
+    @@fulltext([job_Category])
 }
 
-model JobCatalogBranch {
-    job_bid           String @id @default(cuid())
-    job_CatalogBranch String
+model JobCategoryBranch {
+    job_bid            String @id @default(cuid())
+    job_CategoryBranch String
 
-    job_name JobCatalog @relation(fields: [job_cid], references: [job_id], onDelete: Cascade)
+    job_name JobCategory @relation(fields: [job_cid], references: [job_id], onDelete: Cascade)
     job_cid  String
 
-    @@fulltext([job_CatalogBranch])
+    @@fulltext([job_CategoryBranch])
 }
 
 //Company related Database

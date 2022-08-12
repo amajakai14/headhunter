@@ -1,21 +1,22 @@
-export default {
+const en_transalation = {
   TopPage: {
-    Employers: "seeking for team members",
-    Employees: "looking for a job",
-    Welcome: "Welcome to our website",
-    Get2KnowU: "Let me know you some more",
-    UR: "you are ...",
+    Employers: 'seeking for team members',
+    Employees: 'looking for a job',
+    Welcome: 'Welcome to our website',
+    Get2KnowU: 'Let me know you some more',
+    UR: 'you are ...',
   },
   WorkingArea: {
-    Post: "Post Code",
-    Province: "Provice",
-    Amphoe: "Amphoe",
-    District: "District",
-    JobFunction: "JobFunction",
+    Post: 'Post Code',
+    Province: 'Provice',
+    Amphoe: 'Amphoe',
+    District: 'District',
+    JobFunction: 'JobFunction',
   },
   Jobs: {
-    Workplace: "Workplace",
-    WageType: "Wage type",
-    WageRange: "Wage",
+    Workplace: 'Workplace',
+    WageType: 'Wage type',
+    WageRange: 'Wage',
   },
 };
+export default en_transalation;

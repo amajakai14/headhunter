@@ -1,13 +1,8 @@
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { resolve } from 'path';
 import { requestVerifySchema, verifySchema } from '../../../schema/user.schema';
 import { createRouter } from '../context';
-import * as trpcServer from '@trpc/server';
 import { baseUrl } from '../../../constants/baseURL';
 import { sendLoginEmail } from '../../../utils/mailer';
-import { useSession } from 'next-auth/react';
 import { decode64, encode64 } from '../../../utils/base64';
-import { date } from 'zod';
 
 export const userRouter = createRouter()
   .mutation('request-verify-user', {
@@ -62,7 +57,7 @@ export const userRouter = createRouter()
       });
       console.log('user', getUser);
       if (getUser) {
-        const updateUser = await ctx.prisma.user.update({
+        await ctx.prisma.user.update({
           where: {
             id,
           },
