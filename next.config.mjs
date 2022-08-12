@@ -15,4 +15,10 @@ function defineNextConfig(config) {
 export default defineNextConfig({
   reactStrictMode: true,
   swcMinify: true,
+  i18n: {
+    locales: ['default', 'en', 'th'],
+    defaultLocale: 'default',
+    localeDetection: false,
+  },
+  trailingSlash: true,
 });

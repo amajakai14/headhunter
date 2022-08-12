@@ -2,12 +2,14 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity", "fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
-    provider = "mysql" // NOTE: sqlite does not work with NextAuth.js
-    url      = env("DATABASE_URL")
+    provider             = "mysql" // NOTE: sqlite does not work with NextAuth.js
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
 }
 
 model Example {
@@ -57,4 +59,83 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model JobCatalog {
+    job_id      String @id @default(cuid())
+    job_Catalog String
+
+    JobCatalogBranch JobCatalogBranch[]
+
+    @@fulltext([job_Catalog])
+}
+
+model JobCatalogBranch {
+    job_bid           String @id @default(cuid())
+    job_CatalogBranch String
+
+    job_name JobCatalog @relation(fields: [job_cid], references: [job_id], onDelete: Cascade)
+    job_cid  String
+
+    @@fulltext([job_CatalogBranch])
+}
+
+//Company related Database
+model Company {
+    company_id       String  @id @default(cuid())
+    company_name     String  @unique
+    company_email    String  @unique
+    company_password String
+    contact_email    String?
+    contact_number   String
+    company_summary  String?
+    juristic_id      String? @db.VarChar(13)
+    country          String  @default("Thailand")
+    province_id      Int
+    amphoe_id        Int
+    district_id      Int
+    post_no          Int
+    address_detail   String
+    verified         Boolean @default(false)
+
+    jobs Jobs[]
+}
+
+model Jobs {
+    job_id             String       @id @default(cuid())
+    job_name_th        String?
+    job_name_en        String?
+    position_th        String?
+    position_en        String?
+    seat               Int
+    criteria_th        String?
+    criteria_en        String?
+    education_th       String?
+    education_en       String?
+    experience         String?
+    job_description_th String?      @db.Text
+    job_description_en String?      @db.Text
+    job_expiredate     DateTime?
+    job_createAt       DateTime     @default(now())
+    job_visible        Boolean      @default(false)
+    min_pay            Int
+    max_pay            Int
+    company_id         String
+    company_name       Company      @relation(fields: [company_id], references: [company_id], onDelete: Cascade)
+    job_ontags         JobsOnTags[]
+}
+
+model JobsOnTags {
+    job_id String
+    jobs   Jobs?  @relation(fields: [job_id], references: [job_id])
+    tag_id Int
+    tags   Tags?  @relation(fields: [tag_id], references: [tag_id])
+
+    @@id([job_id, tag_id])
+}
+
+model Tags {
+    tag_id     Int          @id @default(autoincrement())
+    tag        String       @unique
+    tag_onjobs JobsOnTags[]
 }

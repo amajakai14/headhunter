@@ -6,7 +6,6 @@ export default function Component() {
   const a = trpc.useMutation(['user.request-verify-user']);
   const email = session?.user?.email as string;
   function sendmail() {
-    console.log('hi front');
     const result = a.mutate({ email });
     console.log(result);
   }

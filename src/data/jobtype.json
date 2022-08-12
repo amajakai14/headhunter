@@ -1,0 +1,39 @@
+[
+  {
+    "JobType": "Accounting",
+    "JobId": 1,
+    "Branches": [
+      { "Branch_name": "Audit", "Branch_id": 1 },
+      { "Branch_name": "Credit Control", "Branch_id": 2 },
+      { "Branch_name": "General Account", "Branch_id": 3 },
+      { "Branch_name": "Taxation", "Branch_id": 4 },
+      { "Branch_name": "Others", "Branch_id": 5 }
+    ]
+  },
+  {
+    "JobType": "Admin & HR",
+    "JobId": 2,
+    "Branches": [
+      {
+        "Branch_name": "Administration/ Operation/ Clerical Support",
+        "Branch_id": 1
+      },
+      { "Branch_name": "Compensation & Benefits", "Branch_id": 2 },
+      { "Branch_name": "Employee Relations", "Branch_id": 3 },
+      { "Branch_name": "Taxation", "Branch_id": 4 }
+    ]
+  },
+  {
+    "JobType": "Banking / Financial",
+    "JobId": 3,
+    "Branches": [
+      {
+        "Branch_name": "Administration/ Operation/ Clerical Support",
+        "Branch_id": 1
+      },
+      { "Branch_name": "Compensation & Benefits", "Branch_id": 2 },
+      { "Branch_name": "Employee Relations", "Branch_id": 3 },
+      { "Branch_name": "Taxation", "Branch_id": 4 }
+    ]
+  }
+]
